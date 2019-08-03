@@ -47,15 +47,36 @@ int add(){
     return 0;
 }
 
+int del(){
+    system("clear");
+    cout << "Please note this does not delete the file but deletes the data inside." << endl;
+    string fname;
+    string lname;
+    string accNum;
+    cout << "Enter the first name : ";
+    cin >> fname;
+    cout << "Last name : ";
+    cin >> lname;
+    cout << "Account number : ";
+    cin >> accNum;
+    
+    string accID = lname + fname + accNum;
+
+    ofstream ofs;
+    ofs.open(accID, std::ofstream::out | std::ofstream::trunc);
+    ofs.close();
+
+    main();
+    return 0;
+}
+
 int main(){
     system("clear");
     cout << "Options : " << endl
     << "1 --> Add a record" << endl
-    << "2 --> Delete a record (NOT READY)" << endl
-    << "3 --> List records (NOT READY)" << endl
-    << "4 --> Search records(NOT READY)" << endl
-    << "5 --> Edit a record(NOT READY)" << endl
-    << "6 --> Quit" << endl << endl;
+    << "2 --> Delete a record" << endl
+    << "3 --> Edit a record(NOT READY)" << endl
+    << "4 --> Quit" << endl << endl;
 
     cout << "Enter an option : ";
     int option;
@@ -70,7 +91,11 @@ int main(){
         add();
     }
 
-    if (option == 6){
+    if(option == 2){
+        del();
+    }
+
+    if (option == 4){
         return 1;
     }
     
