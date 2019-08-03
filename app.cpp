@@ -1,26 +1,33 @@
 #include <iostream>
+#include <fstream>
 using namespace std;
 
+
+int a = 0;
 int main();
 
 int add(){
     system("clear");
-    int accNum;
+    string accNum;
     int bal;
-    string name;
+    string fname;
+    string lname;
     cout << "New account number : ";
     cin >> accNum;
     cout << endl;
-    cout << "Enter name : ";
-    cin >> name;
+    cout << "Enter first name : ";
+    cin >> fname;
     cout << endl;
+    cout << "Enter last name : ";
+    cin >> lname;
     cout << "Enter balance : ";
     cin >> bal;
 
+    string accID = lname + fname + accNum;
     system("clear");
 
     cout << "Is this information good?"<< endl <<
-    "Name : " << name << endl <<
+    "Name : " << lname << ", " << fname << endl <<
     "Account number : " << accNum << endl <<
     "Balance : " << bal << endl << endl;
     char yn;
@@ -28,6 +35,10 @@ int add(){
     cin >> yn;
 
     if(yn == 'y'){
+        ofstream file;
+        file.open(accID);
+        file << lname << " : " << fname << " : " << accNum << " : " << bal;
+        file.close();
         main();
     } else if (yn == 'n'){
         add();
@@ -58,6 +69,7 @@ int main(){
     if(option == 1){
         add();
     }
+    
 
     return 0;
 }
