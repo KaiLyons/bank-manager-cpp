@@ -22,14 +22,14 @@ int add(){
     cin >> lname;
     cout << "Enter balance : ";
     cin >> bal;
+    string date;
+    cout << "Current date : ";
+    cin >> date;
 
     string accID = lname + fname + accNum;
     system("clear");
 
-    cout << "Is this information good?"<< endl <<
-    "Name : " << lname << ", " << fname << endl <<
-    "Account number : " << accNum << endl <<
-    "Balance : " << bal << endl << endl;
+    cout << "Name : " << fname << ", " << lname << "\nDate : " << date << "\nBalance : " << bal << endl;
     char yn;
     cout << "[Y/n] ";
     cin >> yn;
@@ -37,7 +37,7 @@ int add(){
     if(yn == 'y'){
         ofstream file;
         file.open(accID);
-        file << lname << " : " << fname << " : " << accNum << " : " << bal;
+        file << "Name : " << fname << ", " << lname << "\nDate : " << date << "\nBalance : " << bal;
         file.close();
         main();
     } else if (yn == 'n'){
@@ -59,7 +59,7 @@ int del(){
     cin >> lname;
     cout << "Account number : ";
     cin >> accNum;
-    
+
     string accID = lname + fname + accNum;
 
     ofstream ofs;
@@ -70,12 +70,41 @@ int del(){
     return 0;
 }
 
+int edit(){
+    system("clear");
+    string fname;
+    string lname;
+    string accNum;
+    int bal;
+    string date;
+    cout << "Enter the first name : ";
+    cin >> fname;
+    cout << "Last name : ";
+    cin >> lname;
+    cout << "Account number : ";
+    cin >> accNum;
+    cout << "New balance : ";
+    cin >> bal;
+    cout << "Current date : ";
+    cin >> date;
+
+    string accID = lname + fname + accNum;
+
+    ofstream file;
+    file.open (accID);
+    file << "Name : " << fname << ", " << lname << "\nDate : " << date << "\nBalance : " << bal;
+    file.close();
+
+    main();
+    return 0;
+}
+
 int main(){
     system("clear");
     cout << "Options : " << endl
     << "1 --> Add a record" << endl
     << "2 --> Delete a record" << endl
-    << "3 --> Edit a record(NOT READY)" << endl
+    << "3 --> Edit a record" << endl
     << "4 --> Quit" << endl << endl;
 
     cout << "Enter an option : ";
@@ -93,6 +122,10 @@ int main(){
 
     if(option == 2){
         del();
+    }
+
+    if(option == 3){
+        edit();
     }
 
     if (option == 4){
