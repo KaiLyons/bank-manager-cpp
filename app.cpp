@@ -69,6 +69,10 @@ int main(){
     if(option == 1){
         add();
     }
+
+    if (option == 6){
+        return 1;
+    }
     
 
     return 0;
